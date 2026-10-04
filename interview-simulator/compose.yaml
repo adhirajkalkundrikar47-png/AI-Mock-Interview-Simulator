@@ -1,0 +1,32 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      DB_URL: jdbc:mysql://db:3306/interview?allowPublicKeyRetrieval=true&useSSL=false
+      DB_USER: interview
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_ENDPOINT: ${AI_ENDPOINT:-https://api.openai.com/v1/chat/completions}
+      AI_MODEL: ${AI_MODEL:-gpt-4.1-mini}
+      COOKIE_SECURE: "false"
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: interview
+      MYSQL_USER: interview
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+    volumes:
+      - interview_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+volumes:
+  interview_db:

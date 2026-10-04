@@ -1,0 +1,28 @@
+INTERVIEW STUDIO
+Sarvajeet Bajikar - 25WU0101123
+Adhiraj Kalkundrikar - 25WU0101007
+
+WINDOWS
+1. Install JDK 17 or newer.
+2. Double-click start.bat.
+3. Open http://localhost:8080 in your browser.
+4. Create an account and start a five-question interview.
+Keep the terminal open while using the application.
+
+MAC / LINUX
+Run: sh start.sh
+Open: http://localhost:8080
+
+GITHUB
+Upload the CONTENTS of this folder to a new repository.
+Do not upload .env, data, build or target.
+Use Git to preserve the .github workflow and other hidden configuration files.
+GitHub Pages cannot run the Java/MySQL backend.
+
+COURSE STACK
+For Java Servlet + MySQL, follow the Docker steps in README.md.
+
+FEEDBACK
+The default rule-based mode works without any AI key.
+Optional real AI feedback requires your own server-side provider key.
+See README.md and TESTING.md for setup details and verification limits.
